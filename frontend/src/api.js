@@ -12,7 +12,7 @@
  *   ls_transactions — payment transactions
  */
 
-const BASE = 'http://localhost:5000/api';
+const BASE = import.meta.env.VITE_API_URL || 'https://camera-website-4f9z.onrender.com/api';
 const LS_PRODUCTS = 'ls_products';
 const LS_ORDERS = 'ls_orders';
 const LS_TRANSACTIONS = 'ls_transactions';
