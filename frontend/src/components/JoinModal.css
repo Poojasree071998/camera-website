@@ -1,0 +1,134 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95); /* Deep occlusion */
+    backdrop-filter: blur(20px);
+    display: grid;
+    place-items: center; /* Perfect robust centering */
+    z-index: 10000;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 500px;
+    padding: 60px 40px; /* More internal breathing room */
+    position: relative;
+    background: var(--card-bg);
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalPop {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes modalSlide {
+    from { opacity: 0; transform: translateY(-40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.modal-close:hover {
+    color: var(--accent);
+    transform: rotate(90deg);
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.modal-header h2 {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.modal-header h2 span {
+    color: var(--accent);
+}
+
+.modal-header p {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modal-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.modal-input-group label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+}
+
+.modal-input-group input {
+    background: var(--input-bg);
+    border: 1px solid var(--glass-border);
+    padding: 12px 15px;
+    border-radius: 8px;
+    color: var(--text-main);
+    outline: none;
+    transition: var(--transition);
+}
+
+.modal-input-group input:focus {
+    border-color: var(--accent);
+    background: var(--glass);
+}
+
+.modal-error {
+    color: #ff4d4d;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.modal-submit-btn {
+    padding: 15px;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.modal-footer {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: 15px;
+}
+
+[data-theme='light'] .modal-overlay {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme='light'] .modal-content {
+    background: white;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}

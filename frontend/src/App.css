@@ -1,0 +1,5 @@
+/* Global styles for the App container - cleared to allow full-screen dashboard layout */
+.App {
+  width: 100%;
+  min-height: 100vh;
+}

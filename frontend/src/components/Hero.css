@@ -1,0 +1,175 @@
+.hero-section {
+    width: 100%;
+    min-height: 95vh;
+    display: flex;
+    flex-direction: column;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-image 0.8s ease-in-out;
+    position: relative;
+    /* Remove overflow: hidden from here to allow 3D items to pop out if needed */
+}
+
+.hero-overlay-main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Darker gradient on the left for text readability, clear on the right for the camera */
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0) 100%);
+    z-index: 1;
+}
+
+.hero-main-container {
+    display: flex;
+    position: relative;
+    z-index: 2;
+    margin: 20px;
+    margin-top: 100px;
+    height: 75vh;
+    /* CRITICAL: Remove overflow: hidden to prevent clipping of the 3D images */
+    overflow: visible; 
+    border-radius: 30px;
+    /* Completely transparent background to show the slider images clearly */
+    background: transparent;
+}
+
+/* LEFT SIDE: Content */
+.hero-banner-side {
+    flex: 1.2;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 60px 80px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 650px;
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.hero-title {
+    font-size: 5rem;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    font-weight: 800;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+}
+
+.hero-title span {
+    color: var(--accent);
+    font-style: italic;
+}
+
+.hero-subtitle {
+    font-size: 1.35rem;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 45px;
+    line-height: 1.6;
+    max-width: 550px;
+    letter-spacing: 0.5px;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 25px;
+}
+
+/* Button Visibility Fixes */
+.secondary-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* RIGHT SIDE: 3D Showcase */
+.hero-camera-side {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    /* CRITICAL: Remove overflow: hidden to prevent clipping of the 3D images */
+    overflow: visible;
+}
+
+.hero-stats-footer {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    gap: 120px;
+    padding: 40px 0;
+    background: transparent;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-item h3 {
+    font-size: 2.8rem;
+    color: var(--accent);
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.stat-item p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+@media (max-width: 1200px) {
+    .hero-main-container {
+        flex-direction: column;
+        height: auto;
+        margin-top: 80px;
+    }
+    
+    .hero-banner-side {
+        padding: 80px 40px;
+        min-height: 50vh;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+    
+    .hero-camera-side {
+        min-height: 45vh;
+        padding: 50px 0;
+    }
+    
+    .hero-title {
+        font-size: 3.5rem;
+    }
+
+    .hero-btns {
+        justify-content: center;
+    }
+    
+    .hero-stats-footer {
+        gap: 60px;
+        flex-wrap: wrap;
+    }
+}

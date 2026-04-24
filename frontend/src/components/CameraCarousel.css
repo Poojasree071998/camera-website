@@ -1,0 +1,106 @@
+.carousel-stage {
+  position: relative;
+  width: 550px; /* Increased size to prevent clipping */
+  height: 550px;
+  perspective: 2000px; /* Enhanced depth perception */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  overflow: visible; /* CRITICAL: Ensure items don't hide when rotating */
+}
+
+.carousel-rotator {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: rotate3d 25s infinite linear;
+}
+
+.carousel-item {
+  position: absolute;
+  width: 380px; /* Larger images */
+  height: 380px;
+  top: 85px;
+  left: 85px;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.5s ease;
+  user-select: none;
+  pointer-events: none;
+  mix-blend-mode: screen; /* Seamlessly blend image background with black */
+  filter: brightness(1.1) contrast(1.1); /* Make images pop against dark background */
+}
+
+.carousel-item:hover img {
+  transform: scale(1.1);
+}
+
+/* Position the 3 items in a circle with more spacing (350px translateZ) */
+.carousel-item:nth-child(1) {
+  transform: rotateY(0deg) translateZ(350px);
+}
+
+.carousel-item:nth-child(2) {
+  transform: rotateY(120deg) translateZ(350px);
+}
+
+.carousel-item:nth-child(3) {
+  transform: rotateY(240deg) translateZ(350px);
+}
+
+@keyframes rotate3d {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+/* Glow effect behind the camera */
+.carousel-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(60px);
+  z-index: -1;
+}
+
+@media (max-width: 1300px) {
+  .carousel-stage {
+    width: 400px;
+    height: 400px;
+  }
+  
+  .carousel-item {
+    width: 280px;
+    height: 280px;
+    top: 60px;
+    left: 60px;
+  }
+  
+  .carousel-item:nth-child(1) { transform: rotateY(0deg) translateZ(220px); }
+  .carousel-item:nth-child(2) { transform: rotateY(120deg) translateZ(220px); }
+  .carousel-item:nth-child(3) { transform: rotateY(240deg) translateZ(220px); }
+}
+
+@media (max-width: 1100px) {
+    .carousel-stage {
+        width: 320px;
+        height: 320px;
+    }
+}
