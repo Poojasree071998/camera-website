@@ -1,15 +1,2 @@
 node_modules/
-dist/
 .env
-*.log
-frontend/node_modules/
-frontend/dist/
-backend/node_modules/
-backend/.env
-.vscode/
-.idea/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
