@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const path = require('path');
 
 dotenv.config();
 
@@ -11,10 +12,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Basic Route
-app.get('/', (req, res) => {
-    res.send('Camera Marketplace API is running...');
-});
+// Basic Route removed as we will serve the frontend UI instead
 
 // Routes
 const authRoutes = require('./routes/auth');
@@ -26,6 +24,14 @@ app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/transactions', transactionRoutes);
+
+// Serve frontend static files in production
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
+// Catch-all route to serve React app for non-API requests
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+});
 
 // MongoDB Connection (Fallback to local if no URI provided)
 const PORT = process.env.PORT || 5000;
